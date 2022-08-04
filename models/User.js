@@ -17,7 +17,6 @@ User.init(
     },
     playlist_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       references: {
         model: 'playlist',
         key: 'id',
@@ -25,7 +24,6 @@ User.init(
     },
     trail_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       references: {
         model: 'trail',
         key: 'id',
