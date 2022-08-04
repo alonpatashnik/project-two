@@ -1,0 +1,46 @@
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	display: grid;
+	justify-items: center;
+	align-items: center;
+	background-color: #3a3a3a;
+}
+
+#main-holder {
+	width: 50%;
+	height: 70%;
+	display: grid;
+	justify-items: center;
+	align-items: center;
+	background-color: white;
+	border-radius: 7px;
+	box-shadow: 0px 0px 5px 2px black;
+}
+.box {
+	height: 200px;
+	width: 95%;
+	display: grid;
+	justify-items: center;
+	align-items: center;
+}
+.clearfix {
+	height: 95%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.left-side,
+.right-side {
+	height: 100%;
+	width: 50%;
+	border: 2px dashed black;
+	margin: 5px;
+	display: inline;
+}
