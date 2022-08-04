@@ -17,15 +17,12 @@ Playlist.init(
     },
     tags: {
       type: DataTypes.STRING,
-      allowNull: false
     },
     upvotes: {
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
     playlist_link: {
         type: DataTypes.STRING,
-        allowNull: false,
         validate: {
             isUrl: true
         }
