@@ -1,6 +1,6 @@
-const User = require('./Reader');
-const Playlist = require('./Book');
-const Trail = require('./LibraryCard');
+const User = require('./User');
+const Playlist = require('./Playlist');
+const Trail = require('./Trail');
 
 
 
