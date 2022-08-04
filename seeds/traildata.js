@@ -1,4 +1,6 @@
-[
+const { Trail } = require('../models')
+
+const trailSeed = [
   {
     "latitude": 47.435642525,
     "longitude": -121.655961871,
@@ -33864,3 +33866,7 @@
     "rating_count": 5
   }
 ]
+
+const seedData = () => Trail.bulkCreate(trailSeed)
+
+module.exports = seedData

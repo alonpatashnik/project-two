@@ -34,13 +34,14 @@ Trail.init(
       type: DataTypes.FLOAT
     },
     report_date: {
-      type: DataTypes.DATE
+      type: DataTypes.STRING
     },
     sum_of_distance: {
-      type: DataTypes.FLOAT
+      type: DataTypes.STRING,
+      allowNull: true
     },
     sum_of_gain: {
-      type: DataTypes.FLOAT
+      type: DataTypes.STRING
     },
     rating_count: {
       type: DataTypes.INTEGER
@@ -51,7 +52,7 @@ Trail.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'user'
+    modelName: 'trail'
   }
 );
 
