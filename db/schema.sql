@@ -1,0 +1,2 @@
+DROP IF DATABASE EXISTS hiking_db;
+CREATE DATABASE hiking_db;
