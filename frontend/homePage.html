@@ -1,12 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Play Outside</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
-    
+    <!-- Header -->
+    <figure class="text-center">
+        <blockquote class="blockquote">
+            <h1>Play Outside</h1>
+            <p>Some catchy subtext</p>
+        </blockquote>
+    </figure>
+    <!-- Nav Section -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Explore</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="#">Login</a>
+                    <a class="nav-link" href="#">Register</a>
+                    <a class= "nav-link" data-bs-toggle="modal" data-bs-target="#AboutModal">About</a>
+                </div>
+            </div>
+        </div>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+
+
+    <!-- About Modal -->
+    <div class="modal fade" id="AboutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Looking to Play Outside?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                   Play Outside is a crowd sourced music sharing platform that allows users allows users to share their signature playlists while hiking! 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="background-image: url(https://bigseventravel.com/wp-content/uploads/2019/06/rainier-1920x1278.jpg); height: 75vh;"></div>
+
+    <!-- 
+    <div id="myCarousel" class="carousel container slide">
+        <div class="carousel-inner">
+                <div class="active item one"></div>
+                <div class="item two"></div>
+                <div class="item three"></div>
+        </div>
+    </div>
+ -->
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous">
+    </script>
+    <script src="./styleScript.js/styleScript.js"></script>
 </body>
+
 </html>
