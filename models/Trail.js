@@ -11,19 +11,40 @@ Trail.init(
       primaryKey: true,
       autoIncrement: true
     },
+    latitude: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    longitude: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    region: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     trail_name: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    trail_type: {
+    dist_type: {
       type: DataTypes.STRING
     },
-    trail_distance: {
+    rating: {
       type: DataTypes.FLOAT
     },
-    elevation_change: {
-        type: DataTypes.FLOAT
-      },
+    report_date: {
+      type: DataTypes.DATE
+    },
+    sum_of_distance: {
+      type: DataTypes.FLOAT
+    },
+    sum_of_gain: {
+      type: DataTypes.FLOAT
+    },
+    rating_count: {
+      type: DataTypes.INTEGER
+    }
   },
   {
     sequelize,
