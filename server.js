@@ -46,7 +46,7 @@ app.post('/register', async (req, res) => {
 	res.render('register')
 })
 // turn on routes
-// app.use(routes);
+app.use(routes);
 
 // turn on connection to db and server
 sequelize.sync({ force: true }).then(() => {
