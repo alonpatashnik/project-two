@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Register</title>
+		<link rel="stylesheet" href="login.css" />
+	</head>
+
+	<body>
+		<main id="main-holder">
+			<h1 id="register-header">Register</h1>
+
+			<div id="error-msg-holder">
+				<p id="error-msg">
+					Invalid username
+					<span id="error-msg-second-line">Username already taken</span>
+				</p>
+			</div>
+
+			<form id="form">
+				<input
+					type="text"
+					name="username"
+					id="username-field"
+					class="form-field"
+					placeholder="Username"
+				/>
+				<input
+					type="text"
+					name="email"
+					id="email-field"
+					class="form-field"
+					placeholder="email"
+				/>
+				<input
+					type="password"
+					name="password"
+					id="password-field"
+					class="form-field"
+					placeholder="Password"
+				/>
+				<input
+					type="password"
+					name="confirmPassword"
+					id="confirmPassword-field"
+					class="form-field"
+					placeholder="Confirm Password?"
+				/>
+
+				<input type="submit" value="Create Account" id="create-form-submit" />
+			</form>
+		</main>
+	</body>
+</html>
