@@ -1,7 +1,7 @@
 const express = require('express')
-// const routes = require('./routes')
+const routes = require('./routes')
 const sequelize = require('./config/connection')
-// const { Trail, User, Playlist } = require('./models')
+const { Trail, User, Playlist } = require('./models')
 const exphbs = require('express-handlebars')
 // const SequelizeStore = require('connect-session-sequelize')(session.Store)
 const bcrypt = require('bcrypt')
@@ -29,12 +29,16 @@ app.get('/register', (req, res) => {
 })
 app.post('/register', async (req, res) => {
 	try {
+		console.log('arrived')
 		const hashedPassword = await bcrypt.hash(req.body.password, 10)
-		users.push({
-			name: req.body.username,
+    	User.create({
+			username: req.body.username,
 			email: req.body.email,
-			password: hashedPassword,
+			password: hashedPassword
 		})
+		// .catch((err) => {
+		// 	res.status(500).json({ msg: 'ERROR', err })
+		// })
 		res.redirect('/login')
 		//store users in database
 	} catch {
@@ -49,6 +53,6 @@ app.post('/register', async (req, res) => {
 app.use(routes);
 
 // turn on connection to db and server
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
 	app.listen(PORT, () => console.log('Now listening ' + PORT))
 })
