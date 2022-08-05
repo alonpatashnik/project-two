@@ -12,10 +12,19 @@ function login() {
 	const username = loginForm.username.value
 	const password = loginForm.password.value
 
+	if (username == '') {
+		alert('Username required')
+		return
+	} else if (password == '') {
+		alert('password required')
+		return
+	}
 	if (username === 'user' && password === 'web_dev') {
 		alert('Successfully logged in')
-		location.reload()
 		//change to homepage
+		window.location.replace(
+			'file:///Users/rainierdotulong/Desktop/project-two/frontend/homePage.html'
+		)
 	} else {
 		loginErrorMsg.style.opacity = 1
 	}
