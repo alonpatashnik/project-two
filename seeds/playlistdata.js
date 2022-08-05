@@ -1,4 +1,6 @@
-[
+const { Playlist } = require('../models')
+
+const playlistData = [
     {
         "playlist_title": "Wrestling with Adjectives",
         "tags": "peaceful",
@@ -29,3 +31,7 @@
     }
 
 ]
+
+const seedPlaylists = () => Playlist.bulkCreate(playlistData)
+
+module.exports = seedPlaylists

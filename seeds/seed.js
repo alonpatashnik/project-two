@@ -1,7 +1,9 @@
+require("dotenv").config();
+
 const sequelize = require('../config/connection')
-const seedTrailData = require('./traildata.json')
-const seedUserData = require('./userdata.json')
-const seedPlaylistData = require('./playlistdata.json')
+const seedTrailData = require('./traildata')
+const seedUserData = require('./userdata')
+const seedPlaylistData = require('./playlistdata')
 
 
 const { User, Playlist, Trail } = require('../models');
@@ -9,12 +11,12 @@ const { User, Playlist, Trail } = require('../models');
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 
-  const trails = await Trail.bulkCreate(seedTrailData);
-
-  const users = await Trail.bulkCreate(seedUserData);
-
-  const playlists = await Trail.bulkCreate(seedPlaylistData);
-
+  await seedTrailData()
+  console.log("\n-----------TRAIL DATA SEEDED-------------\n")
+  await seedUserData();
+  console.log("\n-----------USER DATA SEEDED-------------\n")
+  await seedPlaylistData();
+  console.log("\n-----------PLAYLIST DATA SEEDED-------------\n")
   process.exit(0);
 };
 
