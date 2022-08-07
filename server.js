@@ -21,6 +21,14 @@ app.set('view engine', 'handlebars')
 
 const users = []
 
+// app.METHOD(PATH, HANDLER)
+
+app.get('/', (req, res) => {
+	//res.json("Hello World")
+	res.render('homePage')
+	
+})
+
 app.get('/login', (req, res) => {
 	res.render('login')
 })
