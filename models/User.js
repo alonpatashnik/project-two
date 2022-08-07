@@ -14,10 +14,12 @@ User.init(
     username: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue: 'user',
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      defaultValue: 'password',
     },
     playlist_id: {
       type: DataTypes.INTEGER,

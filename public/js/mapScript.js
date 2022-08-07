@@ -23,7 +23,12 @@ function initMap() {
       icon: iconBase + "info-i_maps.png",
     },
   };
-  const features = [ Trail
+  map.data.loadGeoJson(
+    "/seeds/trails.json",
+  );
+  
+  
+  const features = [ 
    
   ];
 
@@ -35,7 +40,7 @@ function initMap() {
     });
   });
 
-  const legend = document.getElementById("legend");
+  const legend = document.getElementById("#map");
 
   for (const key in icons) {
     const type = icons[key];
