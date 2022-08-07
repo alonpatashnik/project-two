@@ -1,5 +1,10 @@
 
+blockquote{
+    background-image: url("https://i.ibb.co/0mxyhvN/Screenshot-2022-08-05-102445.jpg");
+    background-repeat: no-repeat;
+}
+
 #map {
-    height: 500px;
-    width: 900px;
+    height: 400px;
+    width: 100%;
 }
