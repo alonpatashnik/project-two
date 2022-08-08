@@ -55,7 +55,7 @@ app.post('/home', async (req, res) => {
 			},
 		})
 		if(!foundTrail) {
-			return res.status(401).json('invalid Trail')
+			return res.status(401).json({msg:'invalid Trail'})
 		}
 		// not loading to results page 
 		console.log(foundTrail)
