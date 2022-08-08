@@ -28,6 +28,9 @@ const hbs = exphbs.create({})
 app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars')
 
+<<<<<<< HEAD
+
+=======
 //not logged in
 app.get('/', (req, res) => {
 	//res.json("Hello World")
@@ -43,6 +46,7 @@ app.get('/home', (req, res) => {
 	}
 })
 
+>>>>>>> dev
 // turn on routes
 app.use('/', routes)
 
