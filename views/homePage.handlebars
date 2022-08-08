@@ -8,7 +8,7 @@
     <title>Play Outside</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/">
 </head>
 
 <body>
@@ -46,64 +46,79 @@
         <p>test</p>
         <div id="map">
         </div>
+        {{!-- <script>
+
+            fetch("../php/trails.json").then((response) => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            }).then((trails) => {
+                console.log("trails", trails);
+                return trails;
+            });
+
+
+        </script> --}}
 
 
 
-    <!-- About Modal -->
-    <div class="modal fade" id="AboutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Looking to Play Outside?</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Play Outside is a crowd sourced music sharing platform that allows users allows users to share their
-                    signature playlists while hiking!
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <!-- About Modal -->
+        <div class="modal fade" id="AboutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Looking to Play Outside?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Play Outside is a crowd sourced music sharing platform that allows users allows users to share
+                        their
+                        signature playlists while hiking!
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div id="homePagecarosel" class="carousel slide" data-bs-ride="carousel" data-interval="100">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="https://bigseventravel.com/wp-content/uploads/2019/06/rainier-1920x1278.jpg"
-                    class="d-block w-100" alt="image of Rainer">
-            </div>
-            <div class="carousel-item">
-                <img src="https://s27363.pcdn.co/wp-content/uploads/2020/08/Enchantments-for-Facebook-1.jpg.optimal.jpg"
-                    class="d-block w-100" alt="The Enchantments">
-            </div>
-            <div class="carousel-item">
-                <img src="https://olympicpeninsula.org/wp-content/uploads/2018/07/Hall-of-Mosses-Trail-Hoh-Rain-Forest-2.jpg"
-                    class="d-block w-100" alt="Hall of Mosses">
-            </div>
-            <div class="carousel-item">
-                <img src="https://blog-assets.thedyrt.com/uploads/2018/05/shutterstock_67819000-e1526406453172.jpg"
-                    class="d-block w-100" alt="Dog Mountain">
-            </div>
-            <div class="carousel-item">
-                <img src="https://cdn2.outdoorphotographer.com/assignments/543531/assignment-288-bloom-jimshoemakerphotography-0-1494475130.jpg"
-                    class="d-block w-100" alt="St Helens ">
+        <div id="homePagecarosel" class="carousel slide" data-bs-ride="carousel" data-interval="100">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://bigseventravel.com/wp-content/uploads/2019/06/rainier-1920x1278.jpg"
+                        class="d-block w-100" alt="image of Rainer">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://s27363.pcdn.co/wp-content/uploads/2020/08/Enchantments-for-Facebook-1.jpg.optimal.jpg"
+                        class="d-block w-100" alt="The Enchantments">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://olympicpeninsula.org/wp-content/uploads/2018/07/Hall-of-Mosses-Trail-Hoh-Rain-Forest-2.jpg"
+                        class="d-block w-100" alt="Hall of Mosses">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://blog-assets.thedyrt.com/uploads/2018/05/shutterstock_67819000-e1526406453172.jpg"
+                        class="d-block w-100" alt="Dog Mountain">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://cdn2.outdoorphotographer.com/assignments/543531/assignment-288-bloom-jimshoemakerphotography-0-1494475130.jpg"
+                        class="d-block w-100" alt="St Helens ">
+                </div>
             </div>
         </div>
-    </div>
 
 
-</main>
+    </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
         </script>
     <script src="/frontend/styleScript.js/styleScript.js"></script>
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5xMuDQEMJbMX58iBQqaqU_tBH8pjjW90&callback=initMap&v=weekly"
-      defer
-    ></script>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5xMuDQEMJbMX58iBQqaqU_tBH8pjjW90&callback=initMap&v=weekly"
+        defer></script>
     <script src="/js/mapScript.js"></script>
+
 </body>
 
 </html>
