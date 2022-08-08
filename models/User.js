@@ -18,9 +18,6 @@ User.init(
     },
     password: {
       type: DataTypes.STRING,
-<<<<<<< HEAD
-      allowNull: false
-=======
       allowNull: false,
       defaultValue: 'password',
     },
@@ -37,7 +34,6 @@ User.init(
         model: 'trail',
         key: 'id',
       }
->>>>>>> dev
     }
   },
   {
