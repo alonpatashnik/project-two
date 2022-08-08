@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class User extends Model {}
+class User extends Model { }
 
 User.init(
   {
@@ -20,7 +20,18 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       defaultValue: 'password',
-    }
+    },
+    playlist_link: {
+      type: DataTypes.STRING,
+      validate: {
+        isUrl: true
+      }
+    },
+    author_id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+
+    },
   },
   {
     sequelize,
