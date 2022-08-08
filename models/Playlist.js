@@ -26,12 +26,7 @@ Playlist.init(
         validate: {
             isUrl: true
         }
-    },
-    author_id: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        
-    },
+    }
   },
   {
     sequelize,
