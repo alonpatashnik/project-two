@@ -62,7 +62,7 @@ app.get('/login', (req, res) => {
 })
 //----------------------------------------------------------------------
 app.post('/login', async (req, res) => {
-	console.log('YEA')
+	console.log('------LOGIN BUTTON PRESSED------')
 	try {
 		const foundUser = await User.findOne({
 			where: {
@@ -76,12 +76,9 @@ app.post('/login', async (req, res) => {
 		if (!bcrypt.compareSync(req.body.password, foundUser.password)) {
 			return res.status(401).json('invalid login credentials')
 		}
-		req.session.user = {
-			id: foundUser.id,
-			username: foundUser.username,
-		}
-		return res.status(200).json(foundUser)
+		req.session.loggedin = true
 		//GO TO HOME PAGE
+		res.status(200).render('homePage')
 	} catch (err) {
 		console.log(err)
 	}
