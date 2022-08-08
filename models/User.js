@@ -18,20 +18,6 @@ User.init(
     password: {
       type: DataTypes.STRING,
       allowNull: false
-    },
-    playlist_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'playlist',
-        key: 'id',
-      }
-    },
-    trail_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'trail',
-        key: 'id',
-      }
     }
   },
   {

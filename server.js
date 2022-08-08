@@ -19,35 +19,7 @@ const hbs = exphbs.create({})
 app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars')
 
-const users = []
 
-app.get('/login', (req, res) => {
-	res.render('login')
-})
-app.get('/register', (req, res) => {
-	res.render('register')
-})
-app.post('/register', async (req, res) => {
-	try {
-		console.log('arrived')
-		const hashedPassword = await bcrypt.hash(req.body.password, 10)
-    	User.create({
-			username: req.body.username,
-			password: hashedPassword
-		})
-		// .catch((err) => {
-		// 	res.status(500).json({ msg: 'ERROR', err })
-		// })
-		res.redirect('/login')
-		//store users in database
-	} catch {
-		//reload if error
-		console.log('there was an error in creating account')
-		res.redirect('/register')
-	}
-	console.log(users)
-	res.render('register')
-})
 // turn on routes
 app.use(routes);
 
