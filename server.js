@@ -30,16 +30,47 @@ app.set('view engine', 'handlebars')
 
 //not logged in
 app.get('/', (req, res) => {
-	//res.json("Hello World")
 	res.render('homePage')
+	//res.json("Hello World")
 })
 
 //already logged in
 app.get('/home', (req, res) => {
 	if (req.session.loggedin) {
-		res.send('welcome back, ' + req.session.username + '!')
+		res.render('homePage')
 	} else {
 		res.send('not logged in')
+	}
+})
+app.get('/results', (req, res) => {
+	console.log('---------GET RESULTS PAGE---------')
+	res.render('resultPage', req.session.trail)
+})
+app.post('/home', async (req, res) => {
+	try {
+		console.log('----Search Button Pressed-----')
+		const foundTrail = await Trail.findOne({
+			where: {
+				trail_name: req.body.searchBar
+			},
+		})
+		if(!foundTrail) {
+			return res.status(401).json('invalid Trail')
+		}
+		// not loading to results page 
+		console.log(foundTrail)
+		req.session.trail = {
+            id: foundTrail.id,
+			trail_name: foundTrail.trail_name,
+			region: foundTrail.region,
+			sum_of_distance: foundTrail.sum_of_distance,
+			sum_of_gain: foundTrail.sum_of_gain,
+			dist_type: foundTrail.dist_type
+        }
+		res.status(200).redirect('/results')
+	} catch {
+		console.log('there was an error in selecting trail')
+		res.redirect('home')
 	}
 })
 //-------------------This thing works------------------------------------
@@ -85,13 +116,12 @@ app.post('/login', async (req, res) => {
 		}
 		req.session.loggedin = true
 		//GO TO HOME PAGE
-		res.status(200).render('homePage')
+		res.status(200).redirect('/home')
 	} catch (err) {
 		console.log(err)
 	}
 })
 //----------------------------------------------------------------------
-
 // turn on routes
 app.use('/', routes)
 
