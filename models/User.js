@@ -14,10 +14,30 @@ User.init(
     username: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue: 'user',
     },
     password: {
       type: DataTypes.STRING,
+<<<<<<< HEAD
       allowNull: false
+=======
+      allowNull: false,
+      defaultValue: 'password',
+    },
+    playlist_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'playlist',
+        key: 'id',
+      }
+    },
+    trail_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'trail',
+        key: 'id',
+      }
+>>>>>>> dev
     }
   },
   {

@@ -1,10 +1,18 @@
+<<<<<<< HEAD
 const router = require('express').Router();
 const apiRoutes = require('./api');
 const { User, Trail, Playlist } = require('../models')
 const bcrypt = require('bcrypt')
+=======
+const router = require('express').Router()
+const apiRoutes = require('./api')
+const { User, Trail, Playlist } = require('../models')
+const { where } = require('sequelize')
+>>>>>>> dev
 
-router.use('/api', apiRoutes);
+router.use('/api', apiRoutes)
 
+<<<<<<< HEAD
 router.get('/login', (req, res) => {
 	res.render('login')
 })
@@ -33,3 +41,6 @@ router.post('/register', async (req, res) => {
 })
 
 module.exports = router;
+=======
+module.exports = router
+>>>>>>> dev
