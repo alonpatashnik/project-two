@@ -1,18 +1,19 @@
 
+const { usersTrail } = require('../../routes/api/trailRoutes.js')
 
 
 
+// //for loop
+//         for (let i = 0; i < 10; i++) {
 
-fetch("../php/trails.json").then((response) => {
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-  return response.json();
-}).then((trails) => {
-  console.log("trails", trails);
-  return trails;
-});
-
+//             //get users trail from database
+//             usersTrail = exportedUsersTrail
+//             //change trails into users trail (what the users have in the users table)
+//             console.log(usersTrail[i].latitude);
+//             console.log(usersTrail[i].latitude);
+//             console.log(usersTrail[i].trail_name);
+//             console.log('-----------------------')
+//         }
 
 let map;
 
@@ -30,8 +31,6 @@ function initMap() {
 
 
   // trail array
-
-
   const trailArray = [{
     coords: { lat: 47.6806854, lng: -122.9923121 },
     iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
