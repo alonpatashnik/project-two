@@ -19,11 +19,11 @@ const sess = {
 	resave: false,
 	saveUninitialized: true,
 	store: new SequelizeStore({
-		db: sequelize
-	})
-};
+		db: sequelize,
+	}),
+}
 
-app.use(session(sess));
+app.use(session(sess))
 
 // Static directory
 app.use(express.static('public'))
@@ -40,36 +40,33 @@ app.get('/', (req, res) => {
 
 //already logged in
 app.get('/home', (req, res) => {
-	if (req.session.loggedin) {
+	if (req.session.logged_in) {
 		res.render('homePage')
 	} else {
 		res.send('not logged in')
 	}
 })
 
-// post send through body the trail name -- JUST to find the trail id 
-
-
+// post send through body the trail name -- JUST to find the trail id
 
 // get single trail
 app.get('/results/:name', async (req, res) => {
-	
-	// FIND ONE from db --- happen here 
-	// results that come back from that db query -- thats the object that is passed in NOT a trail session 
-	
+	// FIND ONE from db --- happen here
+	// results that come back from that db query -- thats the object that is passed in NOT a trail session
+
 	const foundTrailId = await Trail.findOne({
 		where: {
-			trail_name: req.params.name
-		}
-	});
-	
+			trail_name: req.params.name,
+		},
+	})
+
 	console.log('----Search Button Pressed-----')
-	
+
 	const foundTrail = await Trail.findOne({
 		where: {
-			id: foundTrailId.id
+			id: foundTrailId.id,
 		},
-		include: [Playlist]
+		include: [Playlist],
 	})
 	if (!foundTrail) {
 		return res.status(401).json({ msg: 'invalid Trail this error ' })
@@ -77,71 +74,46 @@ app.get('/results/:name', async (req, res) => {
 
 	console.log('---------GET RESULTS PAGE---------')
 	console.log(foundTrail)
-	
 
-	res.render('resultPage',foundTrail.toJSON())
+	res.render('resultPage', foundTrail.toJSON())
 })
 
-// app.get('/:name', async (req, res) => {
-	
-// 	// FIND ONE from db --- happen here 
-// 	// results that come back from that db query -- thats the object that is passed in NOT a trail session 
-	
-// 	const foundTrailId = await Trail.findOne({
-// 		where: {
-// 			trail_name: req.params.name
-// 		}
-// 	});
-	
-// 	console.log('----Search Button Pressed-----')
-	
-// 	const foundTrail = await Trail.findOne({
-// 		where: {
-// 			id: foundTrailId.id
-// 		},
-// 		include: [Playlist]
-// 	})
-// 	if (!foundTrail) {
-// 		return res.status(401).json({ msg: 'invalid Trail this error ' })
-// 	}
+app.get('/result/:name', async (req, res) => {
+	const foundTrailId = await Trail.findOne({
+		where: {
+			trail_name: req.params.name,
+		},
+	})
 
-// 	console.log('---------GET RESULTS PAGE---------')
-// 	console.log(foundTrail)
-	
+	console.log('----Search Button Pressed-----')
 
-// 	res.render('resultPage',foundTrail.toJSON())
-// })
+	const foundTrail = await Trail.findOne({
+		where: {
+			id: foundTrailId.id,
+		},
+		include: [Playlist],
+	})
+	if (!foundTrail) {
+		return res.status(401).json({ msg: 'invalid Trail this error ' })
+	}
 
+	console.log('---------GET RESULTS PAGE---------')
+	console.log(foundTrail)
 
-
+	res.render('resultPage', foundTrail.toJSON())
+})
 
 app.post('/playlist', async (req, res) => {
 	try {
 		console.log('PLAYLIST BUTTON PRESSED')
-		Playlist.create({
-			
-
-		}).catch((err) => {
+		Playlist.create({}).catch((err) => {
 			console.log('ERROR' + err)
 		})
 		console.log('----SUCCESS----')
-
-
 	} catch {
 		console.log('error in making playlist')
 	}
 })
-
-
-
-
-//-------------------This thing works------------------------------------
-app.get('/logout', function (req, res) {
-	  req.session.destroy()
-	  // res.clearCookie('connect.sid', cookieOptions) // This throws 500 error
-  
-	  res.redirect('/login')
-  })
 
 app.get('/register', (req, res) => {
 	console.log('---------REGISTER PAGE GENERATED---------')
@@ -150,26 +122,27 @@ app.get('/register', (req, res) => {
 app.post('/register', async (req, res) => {
 	try {
 		const hashedPassword = await bcrypt.hash(req.body.password, 10)
-		User.create({
+		const userData = await User.create({
 			username: req.body.username,
 			password: hashedPassword,
-		}).catch((err) => {
-			res.status(500).json({ msg: 'ERROR', err })
 		})
-		res.redirect('/login')
-	} catch {
-		//reload if error
-		console.log('there was an error in creating account')
-		res.redirect('/register')
+
+		req.session.save(() => {
+			req.session.user_id = userData.id
+			req.session.logged_in = true
+
+			res.redirect('/home')
+		})
+	} catch (err) {
+		res.status(400).json({ msg: 'error in registering user', error: err })
 	}
-	res.render('register')
 })
 app.get('/login', (req, res) => {
-	console.log('----------LOGIN PAGE GENERATED---------')
+	console.log('-----------LOGIN PAGE GENERATED------------')
 	res.render('login')
 })
 app.post('/login', async (req, res) => {
-	console.log('------LOGIN BUTTON PRESSED------')
+	console.log('-------LOGIN BUTTON PRESSED-------')
 	try {
 		const foundUser = await User.findOne({
 			where: {
@@ -178,23 +151,32 @@ app.post('/login', async (req, res) => {
 		})
 		res.render
 		if (!foundUser) {
-			return res.status(401).json('invalid login credentials')
+			res.status(400).json({ msg: 'incorrect username' })
+			return
 		}
+
 		if (!bcrypt.compareSync(req.body.password, foundUser.password)) {
-			return res.status(401).json('invalid login credentials')
+			res.status(400).json({ msg: 'incorrect password' })
+			return
 		}
-		req.session.loggedin = true
-		req.session.user = {
-			id: foundUser.id,
-			username: foundUser.username,
-		}
-		//GO TO HOME PAGE
-		res.status(200).redirect('/home')
+		req.session.save(() => {
+			req.session.user_id = foundUser.id
+			req.session.logged_in = true
+
+			res.redirect('/home')
+		})
 	} catch (err) {
-		console.log(err)
+		res.status(400).json({ msg: 'error in logging in', error: err })
 	}
 })
-//----------------------------------------------------------------------
+
+app.get('/logout', function (req, res) {
+	req.session.destroy()
+	// res.clearCookie('connect.sid', cookieOptions) // This throws 500 error
+
+	res.redirect('/login')
+})
+
 // turn on routes
 app.use('/', routes)
 
