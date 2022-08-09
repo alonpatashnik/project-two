@@ -9,7 +9,15 @@ body {
 	display: grid;
 	justify-items: center;
 	align-items: center;
-	background-color: #3a3a3a;
+	/* background-color: #3a3a3a; */
+}
+
+#background{
+	display: grid;
+	position: absolute;
+	justify-items: center;
+	align-items: center;
+	z-index: -3;
 }
 
 #main-holder {
@@ -18,7 +26,8 @@ body {
 	display: grid;
 	justify-items: center;
 	align-items: center;
-	background-color: white;
+	background-color:white; opacity: .8;
+	background: op;
 	border-radius: 7px;
 	box-shadow: 0px 0px 5px 2px black;
 }
