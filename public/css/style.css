@@ -2,7 +2,17 @@
 blockquote{
     background-image: url("https://i.ibb.co/0mxyhvN/Screenshot-2022-08-05-102445.jpg");
     background-repeat: no-repeat;
+    font-family: 'Courier New', Courier, monospace;
 }
+
+/* #background{
+	display: grid;
+	position: absolute;
+	justify-items: center;
+	align-items: center;
+	z-index: -3;
+} */
+
 
 #map {
     height: 400px;
