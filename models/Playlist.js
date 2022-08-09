@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
+const User = require('./User');
 
 class Playlist extends Model { }
 
@@ -27,18 +28,11 @@ Playlist.init(
         isUrl: true
       }
     },
-    author_id: {
-      type: DataTypes.STRING,
-      allowNull: true,
 
-    },
   },
   {
     sequelize,
-    timestamps: false,
-    freezeTableName: true,
-    underscored: true,
-    modelName: 'playlist'
+
   }
 );
 
