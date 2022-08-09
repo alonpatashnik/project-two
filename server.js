@@ -51,6 +51,28 @@ app.get('/home', (req, res) => {
 app.get('/results', (req, res) => {
 	console.log('---------GET RESULTS PAGE---------')
 	res.render('resultPage', req.session.trail)
+	// try {
+	// 	//populate the table
+	// 	const userPlaylists = Playlist.findAll({
+	// 		where: {
+	// 			author_id: red.session.user.id
+	// 		}
+	// 	})
+	// 	if (!userPlaylists) {
+	// 		return res.status(404).json({ msg: 'no playlists for that user' })
+	// 	}
+	// 	console.log(userPlaylists)
+	// 	req.session.playlist = {
+	// 		author_id: userPlaylists.author_id,
+	// 		id: userPlaylists.id,
+	// 		username: req.session.username,
+	// 		playlist_link: userPlaylists.playlist_link,
+	// 		upvotes: userPlaylists.upvotes
+	// 	}
+	// } catch {
+	// 	console.log('error loading playlists')
+	// }
+
 })
 app.post('/home', async (req, res) => {
 	try {
@@ -79,30 +101,9 @@ app.post('/home', async (req, res) => {
 		res.redirect('home')
 	}
 })
-app.get('/results', async (req, res) => {
 
-	try {
-		//populate the table
-		const userPlaylists = await Playlist.findAll({
-			where: {
-				author_id: red.session.user.id
-			}
-		})
-		if (!userPlaylists) {
-			return res.status(404).json({ msg: 'no playlists for that user' })
-		}
-		console.log(userPlaylists)
-		req.session.playlist = {
-			author_id: userPlaylists.author_id,
-			id: userPlaylists.id,
-			username: req.session.username,
-			playlist_link: userPlaylists.playlist_link,
-			upvotes: userPlaylists.upvotes
-		}
-	} catch {
-		console.log('error loading playlists')
-	}
-})
+
+
 
 
 app.post('/results', async (req, res) => {
