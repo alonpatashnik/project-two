@@ -20,18 +20,7 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       defaultValue: 'password',
-    },
-    playlist_link: {
-      type: DataTypes.STRING,
-      validate: {
-        isUrl: true
-      }
-    },
-    author_id: {
-      type: DataTypes.STRING,
-      allowNull: false,
-
-    },
+    }
   },
   {
     sequelize,
