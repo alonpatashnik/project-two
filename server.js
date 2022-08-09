@@ -74,37 +74,6 @@ app.get('/results', (req, res) => {
 	// }
 
 })
-app.post('/home', async (req, res) => {
-	try {
-		console.log('----Search Button Pressed-----')
-		const foundTrail = await Trail.findOne({
-			where: {
-				trail_name: req.body.searchBar
-			},
-		})
-		if (!foundTrail) {
-			return res.status(401).json({ msg: 'invalid Trail this error ' })
-		}
-		// not loading to results page 
-		console.log(foundTrail)
-		req.session.trail = {
-			id: foundTrail.id,
-			trail_name: foundTrail.trail_name,
-			region: foundTrail.region,
-			sum_of_distance: foundTrail.sum_of_distance,
-			sum_of_gain: foundTrail.sum_of_gain,
-			dist_type: foundTrail.dist_type
-		}
-		res.status(200).redirect('/results')
-	} catch {
-		console.log('there was an error in selecting trail')
-		res.redirect('home')
-	}
-})
-
-
-
-
 
 app.post('/results', async (req, res) => {
 	try {
@@ -124,6 +93,7 @@ app.post('/results', async (req, res) => {
 		console.log('error in making playlist')
 	}
 })
+
 app.get('/playlist', (req, res) => {
 	Playlist.findAll()
 		.then((data) => {
@@ -155,6 +125,35 @@ app.get('/playlist', (req, res) => {
 // 		console.log(err)
 // 	}
 // })
+
+app.post('/home', async (req, res) => {
+	try {
+		console.log('----Search Button Pressed-----')
+		const foundTrail = await Trail.findOne({
+			where: {
+				trail_name: req.body.searchBar
+			},
+		})
+		if (!foundTrail) {
+			return res.status(401).json({ msg: 'invalid Trail this error ' })
+		}
+		// not loading to results page 
+		console.log(foundTrail)
+		req.session.trail = {
+			id: foundTrail.id,
+			trail_name: foundTrail.trail_name,
+			region: foundTrail.region,
+			sum_of_distance: foundTrail.sum_of_distance,
+			sum_of_gain: foundTrail.sum_of_gain,
+			dist_type: foundTrail.dist_type
+		}
+		res.status(200).redirect('/results')
+	} catch {
+		console.log('there was an error in selecting trail')
+		res.redirect('home')
+	}
+})
+
 
 //-------------------This thing works------------------------------------
 app.get('/register', (req, res) => {
