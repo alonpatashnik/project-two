@@ -52,7 +52,7 @@
 					<ul class="list-group list-group-flush">
 					  <li class="list-group-item">Trail Name: {{trail_name}}</li>
 					  <li class="list-group-item">Region: {{region}}</li>
-					  <li class="list-group-item">Total Distance: {{sum_of_distance}}</li>
+					  <li class="list-group-item">Total Distance: {{sum_of_distance}} miles</li>
 					  <li class="list-group-item">Elevation Gain: {{sum_of_gain}}</li>
 					  <li class="list-group-item">Trail Type: {{dist_type}}</li>
 					</ul>
@@ -61,17 +61,17 @@
 		</div>
 	</div>
 
-	<form>
-		<div class="form-group">
-		  <label for="playListTitle">Playlist Title</label>
-		  <input type="link" class="form-control" id="playListTitle" aria-describedby="emailHelp" placeholder="Title of Playlist">
-		</div>
-		<div class="form-group">
-		  <label for="playListLink">Playlist Link</label>
-		  <input type="password" class="form-control" id="playListLink" placeholder="Link to Playlist">
-		</div>
-		<button type="submit" class="btn btn-primary">Submit Playlist</button>
-	</form>
+<form>
+        <div class="form-group">
+          <label for="playListTitle">Playlist Title</label>
+          <input type="text" class="form-control" id="playListTitle" aria-describedby="emailHelp" placeholder="Title of Playlist">
+        </div>
+        <div class="form-group">
+          <label for="playListLink">Playlist Link</label>
+          <input type="link" class="form-control" id="playListLink" placeholder="Link to Playlist">
+        </div>
+        <button type="submit" class="btn btn-primary" id="submitPlaylist">Submit Playlist</button>
+    </form>
 
 
 
