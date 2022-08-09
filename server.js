@@ -74,26 +74,27 @@ app.post('/home', async (req, res) => {
 	}
 })
 
-app.post('/result', async (req, res) => {
-	try {
-		console.log('-----------SUBMT BUTTON PRESSED----------')
-		const newPlaylist = await User.create({
-			where: {
-				playlist_title: req.body.playListTitle,
-				playlist_link: req.body.playListLink
+// app.post('/results', async (req, res) => {
+// 	try {
+// 		console.log('-----------SUBMT BUTTON PRESSED----------')
+// 		const newPlaylist = await User.create({
+			
+// 			req.body.submitPlaylist
+// 			where: {
+// 				playlist_title: req.body.playListTitle,
+// 				playlist_link: req.body.playListLink,
+// 			}
+// 		})
+// 		if(!newPlaylist) {
+// 			res.status(401).json({ msg: 'invalid playlist this error ' })
+// 		}
+// 		console.log(newPlaylist)
 
-			}
-		})
-		if(!newPlaylist) {
-			res.status(401).json({ msg: 'invalid playlist this error ' })
-		}
-		console.log(newPlaylist)
-
-	} catch { 
-		console.log('error in adding playing list')
-		console.log(err)
-	}
-})
+// 	} catch { 
+// 		console.log('error in adding playing list')
+// 		console.log(err)
+// 	}
+// })
 
 //-------------------This thing works------------------------------------
 app.get('/register', (req, res) => {
