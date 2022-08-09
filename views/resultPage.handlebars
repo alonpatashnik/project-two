@@ -36,8 +36,8 @@
 				</div>
 			</div>
 		</div>
-		<form class="form-inline my-2 my-lg-0">
-			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchBar">
+		<form class="form-inline my-2 my-lg-0" id="resultSearchForm">
+			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="resultSearchBar">
 			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 		</form>
 	</nav>
@@ -91,15 +91,16 @@
 			</tr>
 		</thead>
 		<tbody>
-			{{author_id}}
-			<tr>
-				<th scope="row">{{author_id}}</th>
+			
+			{{#each Playlists}}
+			<tr id="playlistAppend">
+				<th scope="row">{{id}}</th>
 				<td>{{playlist_title}}</td>
-				<td>{{usernamer}}</td>
+				<td>placeholder</td>
 				<td>{{playlist_link}}</td>
 				<td>{{upvotes}}</td>
 			</tr>
-			
+			{{/each}}
 
 			</tr>
 		</tbody>
@@ -114,6 +115,7 @@
 		crossorigin="anonymous"></script>
 	<script src="/frontend/styleScript.js/styleScript.js"></script>
 	<script src="/js/results.js"></script>
+	<script src="/js/getPlaylist"></script>
 </body>
 
 </html>

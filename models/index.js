@@ -2,11 +2,21 @@ const User = require('./User');
 const Playlist = require('./Playlist');
 const Trail = require('./Trail');
 
-User.hasMany(Playlist, {
-    foreignKey: 'id'
+
+User.hasMany(Playlist)
+
+Playlist.belongsTo(User)
+    
+
+Playlist.belongsToMany(Trail, {
+    through: 'playlistTrail'
+    
 })
 
-Playlist.belongsToMany(User, {through: 'userPlaylist'})
+Trail.belongsToMany(Playlist, {
+    through: 'playlistTrail'
+    
+})
 
 
 module.exports = { User, Playlist, Trail };

@@ -6,6 +6,7 @@ const seedUserData = require('./userdata')
 const seedPlaylistData = require('./playlistdata')
 
 
+
 const { User, Playlist, Trail } = require('../models');
 
 const seedDatabase = async () => {
@@ -15,8 +16,11 @@ const seedDatabase = async () => {
   console.log("\n-----------TRAIL DATA SEEDED-------------\n")
   await seedUserData();
   console.log("\n-----------USER DATA SEEDED-------------\n")
-  await seedPlaylistData();
+  const playlists = await seedPlaylistData();
   console.log("\n-----------PLAYLIST DATA SEEDED-------------\n")
+  await playlists[0].addTrail(2);
+  // await seedPlaylistTrailData();
+  // console.log("\n-----------PLAYLISTTRAIL DATA SEEDED-------------\n")
   process.exit(0);
 };
 

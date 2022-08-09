@@ -1,7 +1,11 @@
-// document.querySelector('#searchBar').addEventListener("submit", (e) => {
-//     e.preventDefault();
-//     const trailObj = {
-        
-//     }
-    
-// })
+
+document.querySelector('#resultSearchForm').addEventListener("submit", (e) => {
+    e.preventDefault();
+    const searchTerm = document.querySelector('#resultSearchBar').value
+    console.log(searchTerm)
+    if (searchTerm) {
+        document.location.replace('/' + searchTerm)
+    } else {
+        console.log("ooops")
+    }
+})

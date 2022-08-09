@@ -36,17 +36,11 @@
                 </div>
             </div>
         </div>
-        <form class="form-inline my-2 my-lg-0" action='/home' method='POST'>
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="#searchBar" name="searchBar">
+        <form class="form-inline my-2 my-lg-0" id="searchForm">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchBar" name="searchBar">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="search">Search</button>
         </form>
     </nav>
-
-    <main>
-        <p>test</p>
-        <div id="map">
-        </div>
-
 
 
 
@@ -104,8 +98,8 @@
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5xMuDQEMJbMX58iBQqaqU_tBH8pjjW90&callback=initMap&v=weekly"
         defer></script>
-    <script src="/js/mapScript.js"></script>
-    <script src="/public/js/searchFill.js"></script>
+    <script src="/js/homepage.js"></script>
+    {{!-- <script src="/js/searchFill.js"></script> --}}
 
 </body>
 
