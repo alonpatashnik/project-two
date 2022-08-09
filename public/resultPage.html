@@ -62,12 +62,29 @@
 	</div>
 
 
+	<!-- Add Playlist  -->
+	
+	<form action='/results' method='POST'>
+		<div class="form-group">
+			<label for="playListTitle">Playlist Title</label>
+			<input type="text" class="form-control" id="playListTitle" aria-describedby="emailHelp"
+				placeholder="Title of Playlist" name="playlist_title">
+		</div>
+		<div class="form-group">
+			<label for="playListLink">Playlist Link</label>
+			<input type="link" class="form-control" id="playListLink" placeholder="Link to Playlist"
+				name="playlist_link">
+		</div>
+		<button type="submit" class="btn btn-primary" id="submitPlaylist">Submit Playlist</button>
+	</form>
+
 
 
 
 	<!-- Playlist Table -->
 	<table class="table table-hover">
 		<thead>
+			
 		  <tr>
 			<th scope="col">Playlist Tag</th>
 			<th scope="col">Title</th>
@@ -77,24 +94,26 @@
 		  </tr>
 		</thead>
 		<tbody>
-		  <tr>
-			<th scope="row">1</th>
-			<td>Mark</td>
-			<td>Otto</td>
-			<td>@mdo</td>
-			<td>@mdo</td>
-		  </tr>
-		  <tr>
-			<th scope="row">2</th>
-			<td>Jacob</td>
-			<td>Thornton</td>
-			<td>@fat</td>
-		  </tr>
-		  <tr>
-			<th scope="row">3</th>
-			<td colspan="2">Larry the Bird</td>
-			<td>@twitter</td>
-		  </tr>
+			{{#each Playlist}}
+				<tr>
+					<th scope="row">{{id}}</th>
+					<td>{{playlist_title}}</td>
+					<td>{{user.usernamer}}</td>
+					<td>{{playlist_link}}</td>
+					<td>current votes</td>
+				</tr>
+			{{/each}}
+				<tr>
+					<th scope="row">2</th>
+					<td>Jacob</td>
+					<td>Thornton</td>
+					<td>@fat</td>
+				</tr>
+				<tr>
+					<th scope="row">3</th>
+					<td colspan="2">Larry the Bird</td>
+					<td>@twitter</td>
+				</tr>
 		</tbody>
 	  </table>
 

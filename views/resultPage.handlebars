@@ -1,44 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Play Outside</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/style.css">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Play Outside</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
-        <!-- Header -->
-    <figure class="text-center">
-        <blockquote class="blockquote">
-            <h1>Play Outside</h1>
-            <p>Some catchy subtext</p>
-        </blockquote>
-    </figure>
-    <!-- Nav Section -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Explore</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link" href="#">Home</a>
-                    <a class="nav-link" href="#">Login</a>
-                    <a class="nav-link" href="#">Register</a>
-                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#AboutModal">About</a>
-                </div>
-            </div>
-        </div>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchBar">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </nav>
+	<!-- Header -->
+	<figure class="text-center">
+		<blockquote class="blockquote">
+			<h1>Play Outside</h1>
+			<p>Some catchy subtext</p>
+		</blockquote>
+	</figure>
+	<!-- Nav Section -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">Explore</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+				aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-link" href="#">Home</a>
+					<a class="nav-link" href="#">Login</a>
+					<a class="nav-link" href="#">Register</a>
+					<a class="nav-link" data-bs-toggle="modal" data-bs-target="#AboutModal">About</a>
+				</div>
+			</div>
+		</div>
+		<form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchBar">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		</form>
+	</nav>
 
 	<!-- Table for Hike Data result -->
 
@@ -47,74 +49,71 @@
 			<div class="col-sm-6 mx-auto">
 				<div class="card text-center">
 					<div class="card-header">
-					  Hike Information
+						Hike Information
 					</div>
 					<ul class="list-group list-group-flush">
-					  <li class="list-group-item">Trail Name: {{trail_name}}</li>
-					  <li class="list-group-item">Region: {{region}}</li>
-					  <li class="list-group-item">Total Distance: {{sum_of_distance}} miles</li>
-					  <li class="list-group-item">Elevation Gain: {{sum_of_gain}}</li>
-					  <li class="list-group-item">Trail Type: {{dist_type}}</li>
+						<li class="list-group-item">Trail Name: {{trail_name}}</li>
+						<li class="list-group-item">Region: {{region}}</li>
+						<li class="list-group-item">Total Distance: {{sum_of_distance}} miles</li>
+						<li class="list-group-item">Elevation Gain: {{sum_of_gain}}</li>
+						<li class="list-group-item">Trail Type: {{dist_type}}</li>
 					</ul>
-				  </div>
+				</div>
 			</div>
 		</div>
 	</div>
 
-<form action='/results' method='POST'>
-        <div class="form-group">
-          <label for="playListTitle">Playlist Title</label>
-          <input type="text" class="form-control" id="playListTitle" aria-describedby="emailHelp" placeholder="Title of Playlist" name="playlist_title">
-        </div>
-        <div class="form-group">
-          <label for="playListLink">Playlist Link</label>
-          <input type="link" class="form-control" id="playListLink" placeholder="Link to Playlist" name="playlist_link">
-        </div>
-        <button type="submit" class="btn btn-primary" id="submitPlaylist">Submit Playlist</button>
-    </form>
+	<form action='/results' method='POST'>
+		<div class="form-group">
+			<label for="playListTitle">Playlist Title</label>
+			<input type="text" class="form-control" id="playListTitle" aria-describedby="emailHelp"
+				placeholder="Title of Playlist" name="playlist_title">
+		</div>
+		<div class="form-group">
+			<label for="playListLink">Playlist Link</label>
+			<input type="link" class="form-control" id="playListLink" placeholder="Link to Playlist"
+				name="playlist_link">
+		</div>
+		<button type="submit" class="btn btn-primary" id="submitPlaylist">Submit Playlist</button>
+	</form>
 
 
 
 	<!-- Playlist Table -->
 	<table class="table table-hover">
 		<thead>
-		  <tr>
-			<th scope="col">Playlist Tag</th>
-			<th scope="col">Title</th>
-			<th scope="col">Author</th>
-			<th scope="col">Link</th>
-			<th scope="col">Upvotes</th>
-		  </tr>
+			<tr>
+				<th scope="col">Playlist Tag</th>
+				<th scope="col">Title</th>
+				<th scope="col">Author</th>
+				<th scope="col">Link</th>
+				<th scope="col">Upvotes</th>
+			</tr>
 		</thead>
 		<tbody>
-		  <tr>
-			<th scope="row">1</th>
-			<td>Mark</td>
-			<td>Otto</td>
-			<td>@mdo</td>
-			<td>@mdo</td>
-		  </tr>
-		  <tr>
-			<th scope="row">2</th>
-			<td>Jacob</td>
-			<td>Thornton</td>
-			<td>@fat</td>
-		  </tr>
-		  <tr>
-			<th scope="row">3</th>
-			<td colspan="2">Larry the Bird</td>
-			<td>@twitter</td>
-		  </tr>
+			{{author_id}}
+			<tr>
+				<th scope="row">{{author_id}}</th>
+				<td>{{playlist_title}}</td>
+				<td>{{usernamer}}</td>
+				<td>{{playlist_link}}</td>
+				<td>{{upvotes}}</td>
+			</tr>
+			
+
+			</tr>
 		</tbody>
-	  </table>
+	</table>
 
 
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="/frontend/styleScript.js/styleScript.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+	<script src="/frontend/styleScript.js/styleScript.js"></script>
 	<script src="/js/results.js"></script>
 </body>
+
 </html>

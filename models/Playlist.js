@@ -29,7 +29,7 @@ Playlist.init(
     },
     author_id: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
 
     },
   },

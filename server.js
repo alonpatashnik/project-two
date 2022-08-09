@@ -19,11 +19,11 @@ const sess = {
 	resave: false,
 	saveUninitialized: true,
 	store: new SequelizeStore({
-	  db: sequelize
+		db: sequelize
 	})
-  };
-  
-  app.use(session(sess));
+};
+
+app.use(session(sess));
 
 // Static directory
 app.use(express.static('public'))
@@ -79,20 +79,46 @@ app.post('/home', async (req, res) => {
 		res.redirect('home')
 	}
 })
+app.get('/results', async (req, res) => {
+
+	try {
+		//populate the table
+		const userPlaylists = await Playlist.findAll({
+			where: {
+				author_id: red.session.user.id
+			}
+		})
+		if (!userPlaylists) {
+			return res.status(404).json({ msg: 'no playlists for that user' })
+		}
+		console.log(userPlaylists)
+		req.session.playlist = {
+			author_id: userPlaylists.author_id,
+			id: userPlaylists.id,
+			username: req.session.username,
+			playlist_link: userPlaylists.playlist_link,
+			upvotes: userPlaylists.upvotes
+		}
+	} catch {
+		console.log('error loading playlists')
+	}
+})
+
 
 app.post('/results', async (req, res) => {
 	try {
 		console.log('PLAYLIST BUTTON PRESSED')
-		Playlist.create( {
+		Playlist.create({
 			playlist_title: req.body.playlist_title,
 			playlist_link: req.body.playlist_link,
 			author_id: req.session.user.id
 
-		}).catch ((err) => {
+		}).catch((err) => {
 			console.log('ERROR' + err)
 		})
 		console.log('----SUCCESS----')
-		//populate the table
+
+
 	} catch {
 		console.log('error in making playlist')
 	}
@@ -111,7 +137,7 @@ app.get('/playlist', (req, res) => {
 // 	try {
 // 		console.log('-----------SUBMT BUTTON PRESSED----------')
 // 		const newPlaylist = await User.create({
-			
+
 // 			req.body.submitPlaylist
 // 			where: {
 // 				playlist_title: req.body.playListTitle,
@@ -172,9 +198,9 @@ app.post('/login', async (req, res) => {
 		}
 		req.session.loggedin = true
 		req.session.user = {
-            id: foundUser.id,
-            username: foundUser.username,
-        }
+			id: foundUser.id,
+			username: foundUser.username,
+		}
 		//GO TO HOME PAGE
 		res.status(200).redirect('/home')
 	} catch (err) {
