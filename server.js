@@ -35,7 +35,7 @@ app.set('view engine', 'handlebars')
 // THIS SHOULD NOW BE COVERED IN homeRoutes.js
 //not logged in
 app.get('/', (req, res) => {
-	res.render('homePage')
+	res.render('homePageLoggedOut')
 })
 
 //already logged in
