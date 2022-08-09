@@ -82,35 +82,35 @@ app.get('/results/:name', async (req, res) => {
 	res.render('resultPage',foundTrail.toJSON())
 })
 
-app.get('/:name', async (req, res) => {
+// app.get('/:name', async (req, res) => {
 	
-	// FIND ONE from db --- happen here 
-	// results that come back from that db query -- thats the object that is passed in NOT a trail session 
+// 	// FIND ONE from db --- happen here 
+// 	// results that come back from that db query -- thats the object that is passed in NOT a trail session 
 	
-	const foundTrailId = await Trail.findOne({
-		where: {
-			trail_name: req.params.name
-		}
-	});
+// 	const foundTrailId = await Trail.findOne({
+// 		where: {
+// 			trail_name: req.params.name
+// 		}
+// 	});
 	
-	console.log('----Search Button Pressed-----')
+// 	console.log('----Search Button Pressed-----')
 	
-	const foundTrail = await Trail.findOne({
-		where: {
-			id: foundTrailId.id
-		},
-		include: [Playlist]
-	})
-	if (!foundTrail) {
-		return res.status(401).json({ msg: 'invalid Trail this error ' })
-	}
+// 	const foundTrail = await Trail.findOne({
+// 		where: {
+// 			id: foundTrailId.id
+// 		},
+// 		include: [Playlist]
+// 	})
+// 	if (!foundTrail) {
+// 		return res.status(401).json({ msg: 'invalid Trail this error ' })
+// 	}
 
-	console.log('---------GET RESULTS PAGE---------')
-	console.log(foundTrail)
+// 	console.log('---------GET RESULTS PAGE---------')
+// 	console.log(foundTrail)
 	
 
-	res.render('resultPage',foundTrail.toJSON())
-})
+// 	res.render('resultPage',foundTrail.toJSON())
+// })
 
 
 
@@ -136,6 +136,13 @@ app.post('/playlist', async (req, res) => {
 
 
 //-------------------This thing works------------------------------------
+app.get('/logout', function (req, res) {
+	  req.session.destroy()
+	  // res.clearCookie('connect.sid', cookieOptions) // This throws 500 error
+  
+	  res.redirect('/login')
+  })
+
 app.get('/register', (req, res) => {
 	console.log('---------REGISTER PAGE GENERATED---------')
 	res.render('register')
