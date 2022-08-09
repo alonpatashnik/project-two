@@ -19,11 +19,11 @@ const sess = {
 	resave: false,
 	saveUninitialized: true,
 	store: new SequelizeStore({
-	  db: sequelize
+		db: sequelize
 	})
-  };
-  
-  app.use(session(sess));
+};
+
+app.use(session(sess));
 
 // Static directory
 app.use(express.static('public'))
@@ -51,7 +51,81 @@ app.get('/home', (req, res) => {
 app.get('/results', (req, res) => {
 	console.log('---------GET RESULTS PAGE---------')
 	res.render('resultPage', req.session.trail)
+	// try {
+	// 	//populate the table
+	// 	const userPlaylists = Playlist.findAll({
+	// 		where: {
+	// 			author_id: red.session.user.id
+	// 		}
+	// 	})
+	// 	if (!userPlaylists) {
+	// 		return res.status(404).json({ msg: 'no playlists for that user' })
+	// 	}
+	// 	console.log(userPlaylists)
+	// 	req.session.playlist = {
+	// 		author_id: userPlaylists.author_id,
+	// 		id: userPlaylists.id,
+	// 		username: req.session.username,
+	// 		playlist_link: userPlaylists.playlist_link,
+	// 		upvotes: userPlaylists.upvotes
+	// 	}
+	// } catch {
+	// 	console.log('error loading playlists')
+	// }
+
 })
+
+app.post('/results', async (req, res) => {
+	try {
+		console.log('PLAYLIST BUTTON PRESSED')
+		Playlist.create({
+			playlist_title: req.body.playlist_title,
+			playlist_link: req.body.playlist_link,
+			author_id: req.session.user.id
+
+		}).catch((err) => {
+			console.log('ERROR' + err)
+		})
+		console.log('----SUCCESS----')
+
+
+	} catch {
+		console.log('error in making playlist')
+	}
+})
+
+app.get('/playlist', (req, res) => {
+	Playlist.findAll()
+		.then((data) => {
+			res.json(data)
+		})
+		.catch((err) => {
+			res.status(500).json({ msg: 'ERROR', err })
+		})
+})
+
+// app.post('/results', async (req, res) => {
+// 	try {
+// 		console.log('-----------SUBMT BUTTON PRESSED----------')
+// 		const newPlaylist = await User.create({
+
+// 			req.body.submitPlaylist
+// 			where: {
+// 				playlist_title: req.body.playListTitle,
+// 				playlist_link: req.body.playListLink,
+// 			}
+// 		})
+// 		if(!newPlaylist) {
+// 			res.status(401).json({ msg: 'invalid playlist this error ' })
+// 		}
+// 		console.log(newPlaylist)
+
+// 	} catch { 
+// 		console.log('error in adding playing list')
+// 		console.log(err)
+// 	}
+// })
+
 app.post('/home', async (req, res) => {
 	try {
 		console.log('----Search Button Pressed-----')
@@ -80,54 +154,6 @@ app.post('/home', async (req, res) => {
 	}
 })
 
-app.post('/results', async (req, res) => {
-	try {
-		console.log('PLAYLIST BUTTON PRESSED')
-		Playlist.create( {
-			playlist_title: req.body.playlist_title,
-			playlist_link: req.body.playlist_link,
-			author_id: req.session.user.id
-
-		}).catch ((err) => {
-			console.log('ERROR' + err)
-		})
-		console.log('----SUCCESS----')
-		//populate the table
-	} catch {
-		console.log('error in making playlist')
-	}
-})
-app.get('/playlist', (req, res) => {
-	Playlist.findAll()
-		.then((data) => {
-			res.json(data)
-		})
-		.catch((err) => {
-			res.status(500).json({ msg: 'ERROR', err })
-		})
-})
-
-// app.post('/results', async (req, res) => {
-// 	try {
-// 		console.log('-----------SUBMT BUTTON PRESSED----------')
-// 		const newPlaylist = await User.create({
-			
-// 			req.body.submitPlaylist
-// 			where: {
-// 				playlist_title: req.body.playListTitle,
-// 				playlist_link: req.body.playListLink,
-// 			}
-// 		})
-// 		if(!newPlaylist) {
-// 			res.status(401).json({ msg: 'invalid playlist this error ' })
-// 		}
-// 		console.log(newPlaylist)
-
-// 	} catch { 
-// 		console.log('error in adding playing list')
-// 		console.log(err)
-// 	}
-// })
 
 //-------------------This thing works------------------------------------
 app.get('/register', (req, res) => {
@@ -172,9 +198,9 @@ app.post('/login', async (req, res) => {
 		}
 		req.session.loggedin = true
 		req.session.user = {
-            id: foundUser.id,
-            username: foundUser.username,
-        }
+			id: foundUser.id,
+			username: foundUser.username,
+		}
 		//GO TO HOME PAGE
 		res.status(200).redirect('/home')
 	} catch (err) {
