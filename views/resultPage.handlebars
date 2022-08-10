@@ -66,6 +66,7 @@
 
 	<!-- Table for Hike Data result -->
 
+
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-6 mx-auto">
@@ -79,6 +80,7 @@
 						<li class="list-group-item">Total Distance: {{sum_of_distance}} miles</li>
 						<li class="list-group-item">Elevation Gain: {{sum_of_gain}}</li>
 						<li class="list-group-item">Trail Type: {{dist_type}}</li>
+
 					</ul>
 				</div>
 			</div>
@@ -86,7 +88,7 @@
 	</div>
 
 
-	<form id="playlistForm">
+	<form id="playlistForm" data-id="{{id}}">
 		<div class="form-group">
 			<label for="playlistTitle">Playlist Title</label>
 			<input type="text" class="form-control" id="playlistTitle" aria-describedby="emailHelp"
@@ -121,12 +123,13 @@
 				<td>{{playlist_title}}</td>
 				<td>{{user.username}}</td>
 				<td>{{playlist_link}}</td>
-				<td>{{upvotes}}</td>
+				<td id="upvote">{{upvotes}}<button id="upvoteButton">Upvote</button></td>
 			</tr>
 			{{/each}}
 
 			</tr>
 		</tbody>
+
 	</table>
 
 
@@ -138,7 +141,7 @@
 		crossorigin="anonymous"></script>
 	<script src="/frontend/styleScript.js/styleScript.js"></script>
 	<script src="/js/results.js"></script>
-	<script src="/js/getPlaylist"></script>
+	{{!-- <script src="/js/getPlaylist"></script> --}}
 </body>
 
 </html>

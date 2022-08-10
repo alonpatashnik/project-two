@@ -18,4 +18,37 @@ router.get("/", (req, res) => {
     })
 })
 
+router.get('/:id', (req, res) => {
+	Trail.findByPk( req.params.id,{
+        include: [{
+            model:Playlist
+            }]
+        
+        })
+		.then((data) => {
+            
+			res.json(data)
+		})
+		.catch((err) => {
+			res.status(500).json({ msg: 'ERROR', err })
+		})
+})
+
+router.get('/:name', (req, res) => {
+	Trail.findOne({
+        where: {
+			trail_name: req.params.name,
+		}
+    
+    })
+		.then((data) => {
+            
+			res.json(data)
+		})
+		.catch((err) => {
+			res.status(500).json({ msg: 'ERROR', err })
+		})
+})
+
+
 module.exports = router

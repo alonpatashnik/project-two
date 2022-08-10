@@ -50,57 +50,57 @@ app.get('/home', (req, res) => {
 // post send through body the trail name -- JUST to find the trail id
 
 // get single trail
+// app.get('/results/:name', async (req, res) => {
+// 	// const foundTrailId = await Trail.findOne({
+// 	// 	where: {
+// 	// 		trail_name: req.params.name,
+// 	// 	},
+// 	// })
+
+// 	console.log('----Search Button Pressed-----')
+
+// 	const foundTrail = await Trail.findOne({
+// 		where: {
+// 			id: foundTrailId.id,
+// 		},
+// 		include: [Playlist],
+// 	})
+// 	if (!foundTrail) {
+// 		return res.status(401).json({ msg: 'invalid Trail this error ' })
+// 	}
+
+// 	console.log('---------GET RESULTS PAGE---------')
+// 	console.log(foundTrail)
+// 	console.log(foundTrail.Playlists[1])
+
+// 	res.render('resultPage', foundTrail.toJSON())
+// })
+
 app.get('/results/:name', async (req, res) => {
-	const foundTrailId = await Trail.findOne({
-		where: {
-			trail_name: req.params.name,
-		},
-	})
+	// const foundTrailId = await Trail.findOne({
+	// 	where: {
+	// 		trail_name: req.params.name,
+	// 	},
+	// })
 
 	console.log('----Search Button Pressed-----')
 
 	const foundTrail = await Trail.findOne({
 		where: {
-			id: foundTrailId.id,
-		},
-		include: [Playlist],
-	})
-	if (!foundTrail) {
-		return res.status(401).json({ msg: 'invalid Trail this error ' })
-	}
-
-	console.log('---------GET RESULTS PAGE---------')
-	console.log(foundTrail)
-
-	res.render('resultPage', foundTrail.toJSON())
-})
-
-app.get('/result/:name', async (req, res) => {
-	const foundTrailId = await Trail.findOne({
-		where: {
 			trail_name: req.params.name,
-		},
-	})
-
-	console.log('----Search Button Pressed-----')
-
-	const foundTrail = await Trail.findOne({
-		where: {
-			id: foundTrailId.id,
 		},
 		include: [{
-			model:Playlist,
-			include: [User]
+			model:Playlist
 			}]
 	})
 	if (!foundTrail) {
 		return res.status(401).json({ msg: 'invalid Trail this error ' })
 	}
-
+	const foundTrailRaw = foundTrail.toJSON()
 	console.log('---------GET RESULTS PAGE---------')
-	console.log(foundTrail)
+	console.log(foundTrailRaw)
 
-	res.render('resultPage', foundTrail.toJSON())
+	res.render('resultPage', foundTrailRaw)
 })
 
 app.get('/api/playlist', async (req, res) => {
@@ -119,11 +119,13 @@ app.post('/api/playlist', async (req, res) => {
 		console.log('PLAYLIST BUTTON PRESSED')
 
 		const playlistData = await Playlist.create({
+
 			playlist_title:req.body.playlistTitle, 
 			playlist_link:req.body.playlistLink,
 			UserId: req.session.user_id
 			
 		})
+		playlistData.addTrail(req.body.trailId)
 		console.log('----SUCCESS PLAYLIST----')
 		console.log(playlistData)
 		
