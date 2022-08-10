@@ -1,6 +1,32 @@
+
+
+// function init() {
+//     var windowlocation = window.location.pathname.split('/')
+//     //console.log(windowlocation)
+
+//     var arrayurl = windowlocation[2].split('%20')
+//     console.log(arrayurl)
+//     joinarray = arrayurl.join(' ')
+//     console.log(joinarray)
+
+//     fetch('/'+joinarray, {
+//         where: {
+// 			trail_name: req.params.name,
+// 		},
+// 		include: [{
+// 			model:Playlist
+// 			}] 
+//     })    
+// }
+
+
+
+
 const resultFormHandler = async (e) => {
-	e.preventDefault()
-	const searchTerm = document.querySelector('#resultSearchBar').value
+
+    e.preventDefault()
+	const searchTerm = document.querySelector('#searchBar').value
+
 	console.log(searchTerm)
 	if (searchTerm) {
 		document.location.replace('/result/' + searchTerm)
@@ -9,39 +35,54 @@ const resultFormHandler = async (e) => {
 	}
 }
 const playlistFormHandler = async (e) => {
-	e.preventDefault()
-	console.log('--------SUBMIT PLAYLIST PRESSED----------')
-	const playlistTitle = document.querySelector('#playlistTitle').value
-	const playlistLink = document.querySelector('#playlistLink').value
 
-	if (playlistTitle && playlistLink) {
-		//send post req to api endpoint
-		const res = await fetch('/api/playlist', {
-			method: 'POST',
-			body: JSON.stringify({ playlistTitle, playlistLink }),
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		})
-		if (res.ok) {
-			console.log('success playlist added')
-			console.log(await res.json())
+    e.preventDefault();
+        console.log("--------SUBMIT PLAYLIST PRESSED----------")
+        const playlistTitle = document.querySelector('#playlistTitle').value
+        const playlistLink = document.querySelector('#playlistLink').value
+        const trailId = document.querySelector('#playlistForm').getAttribute("data-id")
+        if (playlistTitle && playlistLink) {
+            //send post req to api endpoint
+            const res = await fetch('/api/playlist', {
+                method: 'POST',
+                body: JSON.stringify({playlistTitle,playlistLink,trailId}),
+                headers:{
+                    "Content-Type":"application/json"
+                }
+            })
+            if (res.ok) {
+                location.reload();
+                console.log('success playlist added')
+                console.log(await res.json())
+                //add to table from databse here
 
-			//get our object
-			//lives inside the playlist API
-			//then should be added the playlist that trail has
-			//
-		} else {
-			alert(res.statusText)
-		}
-	}
+                // render 
+
+
+                // on click create and appened 
+
+                //get our object 
+                //lives inside the playlist API
+                //then should be added the playlist that trail has 
+                //
+                
+            } else {
+                alert(res.statusText)
+            }
+        }
 }
 
-var id = 'id'
-var playlist_title = 'title'
-var username = 'username'
-var playlist_link = 'link'
-var upvotes = 'upvotes'
+// init();
+
+// const playlistPageload = async (e) => {
+//     await fetch('/api/trail/:id', (req, res) => {
+//         include: [{
+
+//         }]
+//     })
+
+
+	
 
 function addPlaylistCode() {
 	const addPlaylistHere = document.getElementById('addPlaylistHere')

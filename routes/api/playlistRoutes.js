@@ -11,6 +11,17 @@ router.get('/', (req, res) => {
 		})
 })
 
+router.get('/', (req, res) => {
+	Playlist.findOne()
+		.then((data) => {
+			
+			res.json(data)
+		})
+		.catch((err) => {
+			res.status(500).json({ msg: 'ERROR', err })
+		})
+})
+
 
 
 

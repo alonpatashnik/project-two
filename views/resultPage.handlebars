@@ -66,6 +66,7 @@
 
 	<!-- Table for Hike Data result -->
 
+
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-6 mx-auto">
@@ -79,6 +80,7 @@
 						<li class="list-group-item">Total Distance: {{sum_of_distance}} miles</li>
 						<li class="list-group-item">Elevation Gain: {{sum_of_gain}}</li>
 						<li class="list-group-item">Trail Type: {{dist_type}}</li>
+
 					</ul>
 				</div>
 			</div>
@@ -86,19 +88,22 @@
 	</div>
 
 
-	<form id="playlistForm">
-        <div class="form-group">
-            <label for="playlistTitle">Playlist Title</label>
-            <input type="text" class="form-control" id="playlistTitle" aria-describedby="emailHelp"
-                placeholder="Title of Playlist" name="playlist_title">
-        </div>
-        <div class="form-group">
-            <label for="playlistLink">Playlist Link</label>
-            <input type="link" class="form-control" id="playlistLink" placeholder="Link to Playlist"
-                name="playlist_link">
-        </div>
-        <button type="submit" class="btn btn-primary" id="submitPlaylist" onclick="addPlaylistCode()">Submit Playlist</button>
-    </form>
+
+	<form id="playlistForm" data-id="{{id}}">
+		<div class="form-group">
+			<label for="playlistTitle">Playlist Title</label>
+			<input type="text" class="form-control" id="playlistTitle" aria-describedby="emailHelp"
+				placeholder="Title of Playlist" name="playlist_title">
+		</div>
+		<div class="form-group">
+			<label for="playlistLink">Playlist Link</label>
+			<input type="link" class="form-control" id="playlistLink" placeholder="Link to Playlist"
+				name="playlist_link">
+		</div>
+		<button type="submit" class="btn btn-primary" id="submitPlaylist">Submit Playlist</button>
+	</form>
+
+
 
 
 	<!-- Playlist Table -->
@@ -120,11 +125,15 @@
 				<td>{{playlist_title}}</td>
 				<td>{{user.username}}</td>
 				<td>{{playlist_link}}</td>
-				<td>{{upvotes}}</td>
-			</tr> --}}
+
+				<td id="upvote">{{upvotes}}<button id="upvoteButton">Upvote</button></td>
+			</tr>
+			{{/each}}
+
 
 			</tr>
 		</tbody>
+
 	</table>
 
 
@@ -136,7 +145,7 @@
 		crossorigin="anonymous"></script>
 	<script src="/frontend/styleScript.js/styleScript.js"></script>
 	<script src="/js/results.js"></script>
-	<script src="/js/getPlaylist"></script>
+	{{!-- <script src="/js/getPlaylist"></script> --}}
 </body>
 
 </html>
