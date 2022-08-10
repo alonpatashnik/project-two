@@ -12,7 +12,6 @@ const playlistFormHandler = async (e) => {
     e.preventDefault();
         console.log("--------SUBMIT PLAYLIST PRESSED----------")
         const playlistTitle = document.querySelector('#playlistTitle').value
-
         const playlistLink = document.querySelector('#playlistLink').value
 
         if (playlistTitle && playlistLink) {
@@ -35,8 +34,6 @@ const playlistFormHandler = async (e) => {
                 //then should be added the playlist that trail has 
                 //
                 
-                
-
             } else {
                 alert(res.statusText)
             }
@@ -45,5 +42,5 @@ const playlistFormHandler = async (e) => {
 
 
 
-document.querySelector('#resultSearchForm').addEventListener('submit', resultFormHandler)
+document.querySelector('#searchForm').addEventListener('submit', resultFormHandler)
 document.querySelector('#playlistForm').addEventListener("submit", playlistFormHandler)

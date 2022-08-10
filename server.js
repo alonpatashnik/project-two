@@ -124,8 +124,9 @@ app.post('/api/playlist', async (req, res) => {
 			UserId: req.session.user_id
 			
 		})
-		console.log('----SUCCESS----')
+		console.log('----SUCCESS PLAYLIST----')
 		console.log(playlistData)
+		
 		res.status(200).json(playlistData)
 	} catch (err) {
 		console.log(err)
