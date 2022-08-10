@@ -85,25 +85,18 @@
 		</div>
 	</div>
 
-	<div class="container mx-auto">
-		<div class "row">
-			<div class="col-sm-6 mx-auto">
-				<div class="card text-center">
-					<form action='/results' method='POST'>
-						<div class="form-group">
-							<label for="playListTitle">Playlist Title</label>
-							<input type="text" class="form-control" id="playListTitle" aria-describedby="emailHelp"
-								placeholder="Title of Playlist" name="playlist_title">
-						</div>
-						<div class="form-group">
-							<label for="playListLink">Playlist Link</label>
-							<input type="link" class="form-control" id="playListLink" placeholder="Link to Playlist"
-								name="playlist_link">
-						</div>
-						<button type="submit" class="btn btn-primary" id="submitPlaylist">Submit Playlist</button>
-					</form>
-				</div>
-			</div>
+
+	<form id="playlistForm">
+		<div class="form-group">
+			<label for="playlistTitle">Playlist Title</label>
+			<input type="text" class="form-control" id="playlistTitle" aria-describedby="emailHelp"
+				placeholder="Title of Playlist" name="playlist_title">
+		</div>
+		<div class="form-group">
+			<label for="playlistLink">Playlist Link</label>
+			<input type="link" class="form-control" id="playlistLink" placeholder="Link to Playlist"
+				name="playlist_link">
+
 		</div>
 	</div>
 
