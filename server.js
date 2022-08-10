@@ -1,7 +1,7 @@
 const express = require('express')
 const routes = require('./routes')
 const sequelize = require('./config/connection')
-const { Trail, User, Playlist, playlistTrail } = require('./models')
+const { Trail, User, Playlist } = require('./models')
 const exphbs = require('express-handlebars')
 const session = require('express-session')
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
@@ -51,9 +51,6 @@ app.get('/home', (req, res) => {
 
 // get single trail
 app.get('/results/:name', async (req, res) => {
-	// FIND ONE from db --- happen here
-	// results that come back from that db query -- thats the object that is passed in NOT a trail session
-
 	const foundTrailId = await Trail.findOne({
 		where: {
 			trail_name: req.params.name,
@@ -104,16 +101,21 @@ app.get('/result/:name', async (req, res) => {
 })
 
 app.post('/playlist', async (req, res) => {
+	console.log("--------SUBMIT PLAYLIST PRESSED----------")
 	try {
 		console.log('PLAYLIST BUTTON PRESSED')
-		Playlist.create({}).catch((err) => {
-			console.log('ERROR' + err)
+
+		const playlistData = Playlist.create({
+			playlist_title:req.body.playlistTitle, 
+			playlist_link:req.body.playlistLink
 		})
 		console.log('----SUCCESS----')
+		res.json({msg: 'success'})
 	} catch {
 		console.log('error in making playlist')
 	}
 })
+
 
 app.get('/register', (req, res) => {
 	console.log('---------REGISTER PAGE GENERATED---------')
@@ -137,10 +139,14 @@ app.post('/register', async (req, res) => {
 		res.status(400).json({ msg: 'error in registering user', error: err })
 	}
 })
+
+
 app.get('/login', (req, res) => {
 	console.log('-----------LOGIN PAGE GENERATED------------')
 	res.render('login')
 })
+
+
 app.post('/login', async (req, res) => {
 	console.log('-------LOGIN BUTTON PRESSED-------')
 	try {

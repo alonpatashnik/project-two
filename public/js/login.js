@@ -5,7 +5,7 @@ const loginFormHandler = async(e) => {
     const username = document.querySelector('#username-field').ariaValueMax.trim()
     const password = document.querySelector('#password-login').ariaValueMax.trim()
 
-    if (emaill &&password) {
+    if (username && password) {
         //send Post req to api endpoint
         const response = await fetch('/login', {
             method: 'POST',
