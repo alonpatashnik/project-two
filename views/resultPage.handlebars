@@ -87,21 +87,22 @@
 
 
 	<form id="playlistForm">
-		<div class="form-group">
-			<label for="playlistTitle">Playlist Title</label>
-			<input type="text" class="form-control" id="playlistTitle" aria-describedby="emailHelp"
-				placeholder="Title of Playlist" name="playlist_title">
-		</div>
-		<div class="form-group">
-			<label for="playlistLink">Playlist Link</label>
-			<input type="link" class="form-control" id="playlistLink" placeholder="Link to Playlist"
-				name="playlist_link">
-
-		</div>
-	</div>
+        <div class="form-group">
+            <label for="playlistTitle">Playlist Title</label>
+            <input type="text" class="form-control" id="playlistTitle" aria-describedby="emailHelp"
+                placeholder="Title of Playlist" name="playlist_title">
+        </div>
+        <div class="form-group">
+            <label for="playlistLink">Playlist Link</label>
+            <input type="link" class="form-control" id="playlistLink" placeholder="Link to Playlist"
+                name="playlist_link">
+        </div>
+        <button type="submit" class="btn btn-primary" id="submitPlaylist" onclick="addPlaylistCode()">Submit Playlist</button>
+    </form>
 
 
 	<!-- Playlist Table -->
+
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -112,17 +113,15 @@
 				<th scope="col">Upvotes</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id="addPlaylistHere">
 			
-			{{#each Playlists}}
-			<tr id="playlistAppend">
+			{{!-- <tr id="playlistAppend">
 				<th scope="row">{{id}}</th>
 				<td>{{playlist_title}}</td>
 				<td>{{user.username}}</td>
 				<td>{{playlist_link}}</td>
 				<td>{{upvotes}}</td>
-			</tr>
-			{{/each}}
+			</tr> --}}
 
 			</tr>
 		</tbody>
