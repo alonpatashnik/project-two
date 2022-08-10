@@ -89,9 +89,23 @@ app.get('/results/:name', async (req, res) => {
 		where: {
 			trail_name: req.params.name,
 		},
-		include: [{
-			model:Playlist
-			}]
+
+
+	})
+
+	console.log('----Search Button Pressed-----')
+
+	const foundTrail = await Trail.findOne({
+		where: {
+			id: foundTrailId.id,
+		},
+		include: [
+			{
+				model: Playlist,
+				include: [User],
+			},
+		],
+
 	})
 	if (!foundTrail) {
 		return res.status(401).json({ msg: 'invalid Trail this error ' })
@@ -114,7 +128,7 @@ app.get('/api/playlist', async (req, res) => {
 })
 
 app.post('/api/playlist', async (req, res) => {
-	console.log("--------SUBMIT PLAYLIST PRESSED----------")
+	console.log('--------SUBMIT PLAYLIST PRESSED----------')
 	try {
 		console.log('PLAYLIST BUTTON PRESSED')
 
@@ -124,18 +138,18 @@ app.post('/api/playlist', async (req, res) => {
 			playlist_link:req.body.playlistLink,
 			UserId: req.session.user_id
 			
+
 		})
 		playlistData.addTrail(req.body.trailId)
 		console.log('----SUCCESS PLAYLIST----')
 		console.log(playlistData)
-		
+
 		res.status(200).json(playlistData)
 	} catch (err) {
 		console.log(err)
 		console.log('error in making playlist')
 	}
 })
-
 
 app.get('/register', (req, res) => {
 	console.log('---------REGISTER PAGE GENERATED---------')
@@ -160,12 +174,10 @@ app.post('/register', async (req, res) => {
 	}
 })
 
-
 app.get('/login', (req, res) => {
 	console.log('-----------LOGIN PAGE GENERATED------------')
 	res.render('login')
 })
-
 
 app.post('/login', async (req, res) => {
 	console.log('-------LOGIN BUTTON PRESSED-------')

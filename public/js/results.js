@@ -23,8 +23,10 @@
 
 
 const resultFormHandler = async (e) => {
+
     e.preventDefault()
 	const searchTerm = document.querySelector('#searchBar').value
+
 	console.log(searchTerm)
 	if (searchTerm) {
 		document.location.replace('/result/' + searchTerm)
@@ -33,6 +35,7 @@ const resultFormHandler = async (e) => {
 	}
 }
 const playlistFormHandler = async (e) => {
+
     e.preventDefault();
         console.log("--------SUBMIT PLAYLIST PRESSED----------")
         const playlistTitle = document.querySelector('#playlistTitle').value
@@ -79,6 +82,23 @@ const playlistFormHandler = async (e) => {
 //     })
 
 
+	
 
-document.querySelector('#searchForm').addEventListener('submit', resultFormHandler)
-document.querySelector('#playlistForm').addEventListener("submit", playlistFormHandler)
+function addPlaylistCode() {
+	const addPlaylistHere = document.getElementById('addPlaylistHere')
+	var playlistRow = `<tr id="playlistAppend">
+				<th scope="row">${id}</th>
+				<td>${playlist_title}</td>
+				<td>${username}</td>
+				<td>${playlist_link}</td>
+				<td>${upvotes}</td>
+			</tr>`
+	addPlaylistHere.innerHTML += playlistRow
+}
+
+document
+	.querySelector('#searchForm')
+	.addEventListener('submit', resultFormHandler)
+document
+	.querySelector('#playlistForm')
+	.addEventListener('submit', playlistFormHandler)
