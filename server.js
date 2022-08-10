@@ -121,6 +121,7 @@ app.post('/api/playlist', async (req, res) => {
 		const playlistData = await Playlist.create({
 			playlist_title:req.body.playlistTitle, 
 			playlist_link:req.body.playlistLink,
+			UserId: req.session.user_id
 			
 		})
 		console.log('----SUCCESS----')
