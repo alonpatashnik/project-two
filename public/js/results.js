@@ -1,4 +1,3 @@
-
 const resultFormHandler = async (e) => {
     e.preventDefault()
 	const searchTerm = document.querySelector('#resultSearchBar').value
@@ -17,7 +16,7 @@ const playlistFormHandler = async (e) => {
 
         if (playlist_title && playlist_link) {
             //send post req to api endpoint
-            const res = await fetch('/playlist', {
+            const res = await fetch('/api/playlist', {
                 method: 'POST',
                 body: JSON.stringify({playlist_title,playlist_Link}),
                 headers:{
