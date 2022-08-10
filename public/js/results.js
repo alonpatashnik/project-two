@@ -12,6 +12,7 @@ const playlistFormHandler = async (e) => {
     e.preventDefault();
         console.log("--------SUBMIT PLAYLIST PRESSED----------")
         const playlistTitle = document.querySelector('#playlistTitle').value
+
         const playlistLink = document.querySelector('#playlistLink').value
 
         if (playlistTitle && playlistLink) {
@@ -27,7 +28,7 @@ const playlistFormHandler = async (e) => {
             
                 console.log('success playlist added')
                 console.log(await res.json())
-                    location.reload();
+                
             
                 //get our object 
                 //lives inside the playlist API
