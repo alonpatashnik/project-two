@@ -3,14 +3,15 @@ const Playlist = require('./Playlist');
 const Trail = require('./Trail');
 
 
-User.hasMany(Playlist)
+User.hasMany(Playlist, {
+    foreignKey: 'UserId'
+  })
 
 Playlist.belongsTo(User)
     
 
 Playlist.belongsToMany(Trail, {
     through: 'playlistTrail'
-    
 })
 
 Trail.belongsToMany(Playlist, {

@@ -88,7 +88,10 @@ app.get('/result/:name', async (req, res) => {
 		where: {
 			id: foundTrailId.id,
 		},
-		include: [Playlist],
+		include: [{
+			model:Playlist,
+			include: [User]
+			}]
 	})
 	if (!foundTrail) {
 		return res.status(401).json({ msg: 'invalid Trail this error ' })
@@ -100,18 +103,31 @@ app.get('/result/:name', async (req, res) => {
 	res.render('resultPage', foundTrail.toJSON())
 })
 
-app.post('/playlist', async (req, res) => {
+app.get('/api/playlist', async (req, res) => {
+	Playlist.findAll()
+		.then((data) => {
+			res.json(data)
+		})
+		.catch((err) => {
+			res.status(500).json({ msg: 'ERROR', err })
+		})
+})
+
+app.post('/api/playlist', async (req, res) => {
 	console.log("--------SUBMIT PLAYLIST PRESSED----------")
 	try {
 		console.log('PLAYLIST BUTTON PRESSED')
 
-		const playlistData = Playlist.create({
+		const playlistData = await Playlist.create({
 			playlist_title:req.body.playlistTitle, 
-			playlist_link:req.body.playlistLink
+			playlist_link:req.body.playlistLink,
+			UserId: 5
 		})
 		console.log('----SUCCESS----')
-		res.json({msg: 'success'})
-	} catch {
+		console.log(playlistData)
+		res.status(200).json(playlistData)
+	} catch (err) {
+		console.log(err)
 		console.log('error in making playlist')
 	}
 })

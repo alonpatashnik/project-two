@@ -28,6 +28,7 @@ Playlist.init(
         isUrl: true
       }
     },
+   
 
   },
   {

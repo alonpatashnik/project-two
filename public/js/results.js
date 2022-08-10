@@ -14,22 +14,35 @@ const playlistFormHandler = async (e) => {
         const playlistTitle = document.querySelector('#playlistTitle').value
         const playlistLink = document.querySelector('#playlistLink').value
 
-        if (playlist_title && playlist_link) {
+        if (playlistTitle && playlistLink) {
             //send post req to api endpoint
             const res = await fetch('/api/playlist', {
                 method: 'POST',
-                body: JSON.stringify({playlist_title,playlist_Link}),
+                body: JSON.stringify({playlistTitle,playlistLink}),
                 headers:{
                     "Content-Type":"application/json"
                 }
             })
             if (res.ok) {
-                console.log('success playlist thing')
+            
+                console.log('success playlist added')
+                console.log(await res.json())
+                    location.reload();
+            
+                //get our object 
+                //lives inside the playlist API
+                //then should be added the playlist that trail has 
+                //
+                
+                
 
             } else {
                 alert(res.statusText)
             }
         }
 }
+
+
+
 document.querySelector('#resultSearchForm').addEventListener('submit', resultFormHandler)
 document.querySelector('#playlistForm').addEventListener("submit", playlistFormHandler)
